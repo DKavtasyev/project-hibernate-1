@@ -8,35 +8,36 @@ import java.util.Date;
 @Table(name = "player", schema = "rpg")
 @NamedQueries({
         @NamedQuery(name = "Player_Quantity",
-                query = "select count(*) from Player")
+                query = "select count(p) from Player p")
 })
 public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", length = 12, nullable = false)
     private String name;
 
-    @Column(name = "title")
+    @Column(name = "title", length = 30, nullable = false)
     private String title;
 
-    @Column(name = "race")
+    @Column(name = "race", nullable = false)
     @Enumerated(EnumType.ORDINAL)
     private Race race;
 
-    @Column(name = "profession")
+    @Column(name = "profession", nullable = false)
     @Enumerated(EnumType.ORDINAL)
     private Profession profession;
 
-    @Column(name = "birthday")
+    @Column(name = "birthday", nullable = false)
     private Date birthday;
 
-    @Column(name = "banned")
+    @Column(name = "banned", nullable = false)
     private Boolean banned;
 
-    @Column(name = "level")
+    @Column(name = "level", nullable = false)
     private Integer level;
 
     public Player() {
